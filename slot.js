@@ -68,23 +68,18 @@ function spin() {
       var duration = 2000 + (n - 1) * 500;
       var startTime = performance.now();
 
-   function animate(now) {
+  function animate(now) {
   var elapsed = now - startTime;
 
-  reel.src = getCacheBustedUrl(
-    symbols[Math.floor(Math.random() * symbols.length)]
-  );
+  // always change symbol while spinning
+  var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+  reel.src = getCacheBustedUrl(currentSymbol);
 
   if (elapsed < duration) {
-
-    setTimeout(function () {
-      requestAnimationFrame(animate);
-    }, 50);
-
+    requestAnimationFrame(animate);
   } else {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
-    console.log("Final:", finalChoice);
 
     reel.src = getCacheBustedUrl(finalChoice);
 
