@@ -28,19 +28,30 @@ var symbols = [
 
 // Initialize reels
 function initializeReels() {
-  for (var i = 1; i <= 5; i++) {
-    var reel = document.getElementById("reel" + i);
-    if (reel) {
-      var randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-      reel.src = getCacheBustedUrl(randomSymbol);
-    }
-  }
 
   var spinBtn = document.getElementById("spinBtn");
+
+  // safety: always ensure button is usable
   if (spinBtn) {
     spinBtn.disabled = false;
     spinBtn.addEventListener("click", spin);
   }
+
+  for (var i = 1; i <= 5; i++) {
+    var reel = document.getElementById("reel" + i);
+
+    if (!reel) {
+      console.warn("Missing reel:", i);
+      continue;
+    }
+
+    var randomSymbol =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    reel.src = getCacheBustedUrl(randomSymbol);
+  }
+
+  console.log("initializeReels complete");
 }
 
 // Spin function
