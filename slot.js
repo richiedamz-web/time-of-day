@@ -16,7 +16,6 @@ var symbols = [
   "images/dixheuresvingt.jpg",
   "images/troisheuresetdemie.jpg",
   "images/uneheureetdemie.jpg", 
-  "images/troisheuresetdemie.jpg", 
   "images/onzeheuresmoinsvingtcinq.jpg",
   "images/onzeheuresmoinsvingt.jpg", 
   "images/deuxheuresmoinslequart.jpg",
@@ -49,7 +48,6 @@ function spin() {
     return;
   }
 
-  var availableSymbols = symbols.slice();
   var reels = [];
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
@@ -65,35 +63,44 @@ function spin() {
       var duration = 2000 + (n - 1) * 500;
       var startTime = performance.now();
 
-      function animate(now) {
-        var elapsed = now - startTime;
-        var speed = Math.max(60, 300 - (elapsed / duration) * 300);
+   function animate(now) {
+  var elapsed = now - startTime;
 
-        // Spinning: pick random symbol with cache-buster
-        reel.src = getCacheBustedUrl(symbols[Math.floor(Math.random() * symbols.length)]);
+  reel.src = getCacheBustedUrl(
+    symbols[Math.floor(Math.random() * symbols.length)]
+  );
 
-        if (elapsed < duration) {
-          setTimeout(() => requestAnimationFrame(animate), 50);
-        } else {
-         
-          reel.src = getCacheBustedUrl(finalChoice); // Final symbol with cache-buster
-          reel.classList.remove("spinning");
-          reel.classList.add("stopping");
-          setTimeout(function() { reel.classList.remove("stopping"); }, 400);
-          var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
-          reels[n - 1] = finalChoice;
+  if (elapsed < duration) {
 
-          if (n === 5) {
-            if (reels.every(function(r) { return r === reels[0]; })) {
-              if (result) result.textContent = "🎉 Jackpot! You got 5 in a row!";
-            } else {
-              if (result) result.textContent = "Voici tes images!";
-            }
-            if (spinBtn) spinBtn.disabled = false;
-          }
-        }
+    setTimeout(function () {
+      requestAnimationFrame(animate);
+    }, 50);
+
+  } else {
+
+    var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
+
+    reel.src = getCacheBustedUrl(finalChoice);
+
+    reel.classList.remove("spinning");
+    reel.classList.add("stopping");
+
+    setTimeout(function () {
+      reel.classList.remove("stopping");
+    }, 400);
+
+    reels[n - 1] = finalChoice;
+
+    if (n === 5) {
+      if (reels.every(function (r) { return r === reels[0]; })) {
+        if (result) result.textContent = "🎉 Jackpot! You got 5 in a row!";
+      } else {
+        if (result) result.textContent = "Voici tes images!";
       }
-
+      if (spinBtn) spinBtn.disabled = false;
+    }
+  }
+}
       requestAnimationFrame(animate);
     })(n);
   }
