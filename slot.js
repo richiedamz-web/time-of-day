@@ -75,7 +75,10 @@ function spin() {
             symbols[Math.floor(Math.random() * symbols.length)];
 
           // FORCE visual update
-          reel.src = getCacheBustedUrl(currentSymbol);
+         reel.style.opacity = "0.2";
+         reel.src = currentSymbol;
+         reel.offsetHeight;
+         reel.style.opacity = "1";
 
           requestAnimationFrame(animate);
 
