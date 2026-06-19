@@ -14,7 +14,7 @@ var symbols = [
   "images/neufheuresdix.jpg",
   "images/deuxheuresdix.jpg",
   "images/dixheuresvingt.jpg",
-  "images/dixheuresvingtcinq.jpg",
+  "images/troisheuresvingtcinq.jpg",
   "images/troisheuresetdemie.jpg",
   "images/uneheureetdemie.jpg",
   "images/onzeheuresmoinsvingtcinq.jpg",
