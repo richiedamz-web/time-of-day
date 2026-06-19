@@ -68,21 +68,21 @@ function spin() {
       var duration = 2000 + (n - 1) * 500;
       var startTime = performance.now();
 
-  function animate(now) {
+ function animate(now) {
   var elapsed = now - startTime;
 
   if (elapsed < duration) {
 
-  var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-  reel.src = currentSymbol;
+    var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+    reel.src = currentSymbol;
 
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
-} else {
+  } else {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
 
-    reel.src = getCacheBustedUrl(finalChoice);
+    reel.src = finalChoice;
 
     reel.classList.remove("spinning");
     reel.classList.add("stopping");
