@@ -1,3 +1,5 @@
+let spinning = false;
+
 function getCacheBustedUrl(url) {
   return url + "?v=" + Date.now();
 }
@@ -67,52 +69,37 @@ function spin() {
       var duration = 2000 + (n - 1) * 500;
       var startTime = performance.now();
 
-      function animate(now) {
-        var elapsed = now - startTime;
-
-        if (elapsed < duration) {
-
-      var speed = Math.max(60, 300 - (elapsed / duration) * 300);
-
-reel.src = getCacheBustedUrl(
-  symbols[Math.floor(Math.random() * symbols.length)]
-);
-
-requestAnimationFrame(animate);
-
-        } else {
-
-        var index = Math.floor(Math.random() * availableSymbols.length);
-        var finalChoice = availableSymbols.splice(index, 1)[0];
-
-          reel.src = getCacheBustedUrl(finalChoice);
-
-          reel.classList.remove("spinning");
-          reel.classList.add("stopping");
-
-          setTimeout(function () {
-            reel.classList.remove("stopping");
-          }, 400);
-
-          reels[n - 1] = finalChoice;
-
-          if (n === 5) {
-            if (reels.every(function (r) { return r === reels[0]; })) {
-              result.textContent = "🎉 Jackpot! You got 5 in a row!";
-            } else {
-              result.textContent = "Voici tes images!";
-            }
-            spinBtn.disabled = false;
-          }
-        }
-      }
-
-      requestAnimationFrame(animate);
-
+    
     })(n);
   }
 }
+function spin() {
+  var reels = [];
+  var result = document.getElementById("result");
+  var spinBtn = document.getElementById("spinBtn");
 
+  spinBtn.disabled = true;
+  result.textContent = "Ça tourne!... 🎰";
+
+  for (var n = 1; n <= 5; n++) {
+    var reel = document.getElementById("reel" + n);
+
+    var duration = 2000 + (n - 1) * 500;
+
+    reels[n - 1] = symbols[Math.floor(Math.random() * symbols.length)];
+
+    reel.src = reels[n - 1];
+  }
+
+  setTimeout(function () {
+    if (reels.every(r => r === reels[0])) {
+      result.textContent = "🎉 Jackpot! You got 5 in a row!";
+    } else {
+      result.textContent = "Voici tes images!";
+    }
+    spinBtn.disabled = false;
+  }, 3500);
+}
 // Run on page load
 window.addEventListener("load", initializeReels);
 initializeReels();
