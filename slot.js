@@ -1,4 +1,4 @@
-let spinning = false;
+
 
 function getCacheBustedUrl(url) {
   return url + "?v=" + Date.now();
@@ -46,6 +46,8 @@ function initializeReels() {
 // Spin function
 
 function spin() {
+  if (spinning) return;
+  spinning = true;
   var reels = [];
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
@@ -82,12 +84,13 @@ function spin() {
     if (active) {
       requestAnimationFrame(animate);
     } else {
-      if (reels.length === 5 && reels.every(r => r === reels[0])) {
+      if (reels.every(r => r && r === reels[0])) {
         result.textContent = "🎉 Jackpot! You got 5 in a row!";
       } else {
         result.textContent = "Voici tes images!";
       }
       spinBtn.disabled = false;
+      spinning = false;
     }
   }
 
