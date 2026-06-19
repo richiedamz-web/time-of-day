@@ -45,14 +45,7 @@ function initializeReels() {
 
 // Spin function
 function spin() {
-  if (symbols.length < 5) {
-    var result = document.getElementById("result");
-    if (result) result.textContent = "Not enough symbols!";
-    return;
-  }
-
-  var reels = [] 
-  var availableSymbols = symbols.slice();
+  var reels = [];
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
 
@@ -60,14 +53,24 @@ function spin() {
   result.textContent = "Ça tourne!... 🎰";
 
   for (var n = 1; n <= 5; n++) {
-    (function(n) {
-      var reel = document.getElementById("reel" + n);
-      if (!reel) return;
+    var reel = document.getElementById("reel" + n);
 
-      reel.classList.add("spinning");
+    var duration = 2000 + (n - 1) * 500;
 
-      var duration = 2000 + (n - 1) * 500;
-      var startTime = performance.now();
+    reels[n - 1] = symbols[Math.floor(Math.random() * symbols.length)];
+
+    reel.src = reels[n - 1];
+  }
+
+  setTimeout(function () {
+    if (reels.every(r => r === reels[0])) {
+      result.textContent = "🎉 Jackpot! You got 5 in a row!";
+    } else {
+      result.textContent = "Voici tes images!";
+    }
+    spinBtn.disabled = false;
+  }, 3500);
+}
 
     
     })(n);
