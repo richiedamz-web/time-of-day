@@ -73,15 +73,14 @@ function spin() {
         reel.src = getCacheBustedUrl(symbols[Math.floor(Math.random() * symbols.length)]);
 
         if (elapsed < duration) {
-          setTimeout(function() { requestAnimationFrame(animate); }, speed);
+          setTimeout(() => requestAnimationFrame(animate), 50);
         } else {
-          var index = Math.floor(Math.random() * availableSymbols.length);
-          var finalChoice = availableSymbols.splice(index, 1)[0];
+         
           reel.src = getCacheBustedUrl(finalChoice); // Final symbol with cache-buster
           reel.classList.remove("spinning");
           reel.classList.add("stopping");
           setTimeout(function() { reel.classList.remove("stopping"); }, 400);
-
+          var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
           reels[n - 1] = finalChoice;
 
           if (n === 5) {
