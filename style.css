@@ -57,4 +57,10 @@
   50%  { transform: scaleY(0.9); }
   100% { transform: scaleY(1); }
 }
+#slot-machine img {
+  border: 5px solid red !important;
+  width: 120px !important;
+  height: 120px !important;
+  display: block !important;
+}
 
