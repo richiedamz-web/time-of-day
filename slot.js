@@ -71,12 +71,13 @@ function spin() {
   function animate(now) {
   var elapsed = now - startTime;
 
-  // always change symbol while spinning
-  var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-  reel.src = getCacheBustedUrl(currentSymbol);
-
   if (elapsed < duration) {
+
+    var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+    reel.src = getCacheBustedUrl(currentSymbol);
+
     requestAnimationFrame(animate);
+
   } else {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
@@ -94,11 +95,11 @@ function spin() {
 
     if (n === 5) {
       if (reels.every(function (r) { return r === reels[0]; })) {
-        if (result) result.textContent = "🎉 Jackpot! You got 5 in a row!";
+        result.textContent = "🎉 Jackpot! You got 5 in a row!";
       } else {
-        if (result) result.textContent = "Voici tes images!";
+        result.textContent = "Voici tes images!";
       }
-      if (spinBtn) spinBtn.disabled = false;
+      spinBtn.disabled = false;
     }
   }
 }
