@@ -1,3 +1,10 @@
+.reel {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+}
 #slot-machine {
   display: flex;
   justify-content: center;
