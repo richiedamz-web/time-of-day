@@ -74,7 +74,9 @@ function spin() {
   if (elapsed < duration) {
 
     var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-    reel.src = symbols[Math.floor(Math.random() * symbols.length)] + "?t=" + Math.random();
+    reel.src = getCacheBustedUrl(
+  symbols[Math.floor(Math.random() * symbols.length)]
+);
 
     requestAnimationFrame(animate);
 
