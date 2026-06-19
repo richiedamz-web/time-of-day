@@ -4,24 +4,24 @@ function getCacheBustedUrl(url) {
 
 // Symbol list (use the actual filenames of your new sharp images)
 var symbols = [
-  "images/elleaunchienpaint2.jpg",
-  "images/ilaunchatpant.jpg",
-  "images/jadoreleschatspaint3.jpg",
-  "images/jaimeleschienspaint2.jpg",
-  "images/jenaimepaslesperroquetspaint2.jpg",
-  "images/jenaipasdanimalpaint2.jpg",
-  "images/ouijaimelesanimauxpaint3.jpg",
-  "images/tuaimeslesanimauxpaint3.jpg",
-  "images/unchatpnt.jpg",
-  "images/unchevalpant.jpg",
-  "images/unchienpaint2.jpg",
-  "images/uncochondindepnt.jpg", 
-  "images/unesourispaint.jpg", 
-  "images/unhamster.jpg",
-  "images/unherisson.jpg", 
-  "images/unlapin.jpg",
-  "images/unperroquetpnt.jpg",
-  "images/unpoissonrouge.jpg"
+  "images/neufheures.jpg",
+  "images/dixheures.jpg",
+  "images/onzeheures.jpg",
+  "images/douzeheures.jpg",
+  "images/uneheure.jpg",
+  "images/deuxheures.jpg",
+  "images/troisheures.jpg",
+  "images/neufheuresdix.jpg",
+  "images/deuxheuresdix.jpg",
+  "images/dixheuresvingt.jpg",
+  "images/troisheuresvingt.jpg",
+  "images/uneheureetdemie.jpg", 
+  "images/troisheuresetdemie.jpg", 
+  "images/onzeheuresmoinsvingtcinq.jpg",
+  "images/onzeheuresmoinsvingt.jpg", 
+  "images/deuxheuresmoinslequart.jpg",
+  "images/quatreheuresmoinslequart.jpg",
+  "images/quatreheuresmoinsdix.jpg"
 ];
 
 // Initialize reels on page load
