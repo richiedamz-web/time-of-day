@@ -45,20 +45,18 @@ function initializeReels() {
 
 // Spin function
 
- function spin() {
+function spin() {
   var reels = [];
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
+
+  if (!result || !spinBtn) return;
 
   spinBtn.disabled = true;
   result.textContent = "Ça tourne!... 🎰";
 
   var startTime = performance.now();
-  var durations = [];
-
-  for (var i = 1; i <= 5; i++) {
-    durations[i - 1] = 2000 + (i - 1) * 500;
-  }
+  var durations = [2000, 2500, 3000, 3500, 4000];
 
   function animate() {
     var now = performance.now();
@@ -66,34 +64,32 @@ function initializeReels() {
 
     for (var n = 1; n <= 5; n++) {
       var reel = document.getElementById("reel" + n);
+      if (!reel) continue;
 
       if (now - startTime < durations[n - 1]) {
         active = true;
 
-        reel.src = getCacheBustedUrl(
-          symbols[Math.floor(Math.random() * symbols.length)]
-        );
-      } else if (!reels[n - 1]) {
-        reels[n - 1] =
-          symbols[Math.floor(Math.random() * symbols.length)];
+        var img = symbols[Math.floor(Math.random() * symbols.length)];
+        reel.src = getCacheBustedUrl(img);
 
-        reel.src = reels[n - 1];
+      } else if (!reels[n - 1]) {
+        var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
+        reels[n - 1] = finalImg;
+        reel.src = finalImg;
       }
     }
 
     if (active) {
       requestAnimationFrame(animate);
     } else {
-      if (reels.every(r => r === reels[0])) {
+      if (reels.length === 5 && reels.every(r => r === reels[0])) {
         result.textContent = "🎉 Jackpot! You got 5 in a row!";
       } else {
         result.textContent = "Voici tes images!";
       }
-
       spinBtn.disabled = false;
     }
   }
 
   requestAnimationFrame(animate);
-}   
- 
+}
