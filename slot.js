@@ -1,5 +1,5 @@
 function getCacheBustedUrl(url) {
-  return url;
+  return url + "?v=" + Date.now();
 }
 
 // Symbol list (use the actual filenames of your new sharp images)
@@ -74,7 +74,7 @@ function spin() {
   if (elapsed < duration) {
 
     var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-    reel.src = currentSymbol;
+    reel.src = getCacheBustedUrl(currentSymbol);
 
     requestAnimationFrame(animate);
 
@@ -82,7 +82,7 @@ function spin() {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
 
-    reel.src = finalChoice;
+    reel.src = getCacheBustedUrl(finalChoice);
 
     reel.classList.remove("spinning");
     reel.classList.add("stopping");
