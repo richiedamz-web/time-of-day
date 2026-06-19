@@ -82,16 +82,16 @@ function spin() {
       if (!reel) continue;
 
       if (now - startTime < durations[n - 1]) {
-        active = true;
+      active = true;
 
-        var img = symbols[Math.floor(Math.random() * symbols.length)];
-        reel.src = getCacheBustedUrl(img);
+      var img = symbols[Math.floor(Math.random() * symbols.length)];
+      reel.src = getCacheBustedUrl(img);
 
-      } else if (!reels[n - 1]) {
-        var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
-        reels[n - 1] = finalImg;
-        reel.src = finalImg;
-      }
+}     else {
+      var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
+      reels[n - 1] = finalImg;
+      reel.src = finalImg;
+}
     }
 
     if (active) {
