@@ -1,5 +1,5 @@
 function getCacheBustedUrl(url) {
-  return url + "?v=" + new Date().getTime();
+  return url;
 }
 
 // Symbol list (use the actual filenames of your new sharp images)
@@ -73,15 +73,10 @@ function spin() {
 
   if (elapsed < duration) {
 
-  if (!animate.lastUpdate || now - animate.lastUpdate > 60) {
-
   var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
   reel.src = currentSymbol;
 
-  animate.lastUpdate = now;
-}
-
-requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
 } else {
 
