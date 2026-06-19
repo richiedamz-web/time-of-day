@@ -46,13 +46,15 @@ function initializeReels() {
 // Spin function
 
 function spin() {
-  if (spinning) return;
-  spinning = true;
-  var reels = [];
+
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
 
-  if (!result || !spinBtn) return;
+  if (!result || !spinBtn || spinning) return;
+
+  spinning = true;
+
+  var reels = [];
 
   spinBtn.disabled = true;
   result.textContent = "Ça tourne!... 🎰";
