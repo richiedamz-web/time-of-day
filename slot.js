@@ -1,6 +1,6 @@
 
 
-
+var spinning = false;
 
 // Symbol list
 var symbols = [
@@ -70,22 +70,28 @@ function spin() {
 
   var startTime = performance.now();
   var durations = [2000, 2500, 3000, 3500, 4000];
+  var frameCounter = 0;
 
   function animate() {
     var now = performance.now();
     var active = false;
 
     for (var n = 1; n <= 5; n++) {
-      var reel = document.getElementById("reel" + n);
-      if (!reel) continue;
+    var reel = document.getElementById("reel" + n);
+    if (!reel) continue;
+      
+    frameCounter++;
 
-      if (now - startTime < durations[n - 1]) {
-      active = true;
+    if (now - startTime < durations[n - 1]) {
+    active = true;
 
-      var img = symbols[Math.floor(Math.random() * symbols.length)];
-      reel.src = img;
-
-}     else {
+    if (frameCounter % 3 === 0) {
+    var img = symbols[Math.floor(Math.random() * symbols.length)];
+    reel.src = img;
+  }
+}
+   
+      else {
       var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
       reels[n - 1] = finalImg;
       reel.src = finalImg;
@@ -99,6 +105,8 @@ function spin() {
         result.textContent = "🎉 Jackpot! You got 5 in a row!";
       } else {
         result.textContent = "Voici tes images!";
+        spinBtn.disabled = false;
+        spinning = false;
       }
       spinBtn.disabled = false;
       spinning = false;
