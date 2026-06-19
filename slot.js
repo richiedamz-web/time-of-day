@@ -73,10 +73,15 @@ function spin() {
 
   if (elapsed < duration) {
 
- var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
- reel.src = currentSymbol;
+  if (!animate.lastUpdate || now - animate.lastUpdate > 60) {
 
- requestAnimationFrame(animate);
+  var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+  reel.src = currentSymbol;
+
+  animate.lastUpdate = now;
+}
+
+requestAnimationFrame(animate);
 
 } else {
 
