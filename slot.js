@@ -73,12 +73,14 @@ function spin() {
 
   if (elapsed < duration) {
 
+  for (var i = 0; i < 3; i++) {
     var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-    reel.src = getCacheBustedUrl(currentSymbol);
+    reel.src = currentSymbol;
+  }
 
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-  } else {
+} else {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
 
