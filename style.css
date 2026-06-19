@@ -1,10 +1,5 @@
-.reel {
-  width: 120px;
-  height: 120px;
-  background-size: cover;
-  background-position: center;
-  display: inline-block;
-}
+
+
 #slot-machine {
   display: flex;
   justify-content: center;
@@ -13,12 +8,11 @@
 }
 
 #slot-machine img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   margin: 5px;
-  border: 2px solid #333;
-  border-radius: 8px;
-  object-fit: cover;
+  border: 5px solid red;
+  display: block;
 }
 
 #result {
