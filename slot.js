@@ -1,8 +1,6 @@
 
 
-function getCacheBustedUrl(url) {
-  return url + "?v=" + Date.now();
-}
+
 
 // Symbol list
 var symbols = [
