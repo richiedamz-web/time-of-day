@@ -49,7 +49,8 @@ function spin() {
     return;
   }
 
-  var reels = [];
+  var reels = [] 
+  var availableSymbols = symbols.slice();
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
 
@@ -71,21 +72,20 @@ function spin() {
 
         if (elapsed < duration) {
 
-          var currentSymbol =
-            symbols[Math.floor(Math.random() * symbols.length)];
+      var speed = Math.max(60, 300 - (elapsed / duration) * 300);
 
-          // FORCE visual update
-         reel.style.opacity = "0.2";
-         reel.style.backgroundImage = "url(" + currentSymbol + ")";
-         reel.offsetHeight;
-         reel.style.opacity = "1";
+reel.src = getCacheBustedUrl(
+  symbols[Math.floor(Math.random() * symbols.length)]
+);
 
-          requestAnimationFrame(animate);
+setTimeout(function() {
+  requestAnimationFrame(animate);
+}, speed);
 
         } else {
 
-          var finalChoice =
-            symbols[Math.floor(Math.random() * symbols.length)];
+        var index = Math.floor(Math.random() * availableSymbols.length);
+        var finalChoice = availableSymbols.splice(index, 1)[0];
 
           reel.src = getCacheBustedUrl(finalChoice);
 
