@@ -76,7 +76,7 @@ function spin() {
 
           // FORCE visual update
          reel.style.opacity = "0.2";
-         reel.src = currentSymbol;
+         reel.style.backgroundImage = "url(" + currentSymbol + ")";
          reel.offsetHeight;
          reel.style.opacity = "1";
 
