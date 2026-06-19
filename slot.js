@@ -73,18 +73,10 @@ function spin() {
 
   if (elapsed < duration) {
 
-  var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-  reel.src = "";
-  setTimeout(function () {
-  reel.src = currentSymbol;
-  }, 0);
-  reel.src = currentSymbol;
+ var currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+ reel.src = currentSymbol;
 
-  requestAnimationFrame(animate);
-
-} else {
-
-  requestAnimationFrame(animate);
+ requestAnimationFrame(animate);
 
 } else {
 
