@@ -14,6 +14,7 @@ var symbols = [
   "images/neufheuresdix.jpg",
   "images/deuxheuresdix.jpg",
   "images/dixheuresvingt.jpg",
+  "images/dixheuresvingtcinq.jpg",
   "images/troisheuresetdemie.jpg",
   "images/uneheureetdemie.jpg", 
   "images/onzeheuresmoinsvingtcinq.jpg",
@@ -29,7 +30,11 @@ function initializeReels() {
     var reel = document.getElementById("reel" + i);
     if (reel) {
       // Pick a random symbol and add a cache-buster
-      reel.src = getCacheBustedUrl(symbols[Math.floor(Math.random() * symbols.length)]);
+      var spinningChoice = symbols[Math.floor(Math.random() * symbols.length)];
+
+      console.log("Spinning:", spinningChoice);
+
+      reel.src = getCacheBustedUrl(spinningChoice);
     }
   }
 
@@ -79,6 +84,7 @@ function spin() {
   } else {
 
     var finalChoice = symbols[Math.floor(Math.random() * symbols.length)];
+    console.log("Final:", finalChoice);
 
     reel.src = getCacheBustedUrl(finalChoice);
 
