@@ -78,9 +78,7 @@ reel.src = getCacheBustedUrl(
   symbols[Math.floor(Math.random() * symbols.length)]
 );
 
-setTimeout(function() {
-  requestAnimationFrame(animate);
-}, speed);
+requestAnimationFrame(animate);
 
         } else {
 
@@ -116,4 +114,5 @@ setTimeout(function() {
 }
 
 // Run on page load
-window.addEventListener("DOMContentLoaded", initializeReels);
+window.addEventListener("load", initializeReels);
+initializeReels();
