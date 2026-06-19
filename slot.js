@@ -48,7 +48,7 @@ function initializeReels() {
     var randomSymbol =
       symbols[Math.floor(Math.random() * symbols.length)];
 
-    reel.src = getCacheBustedUrl(randomSymbol);
+   reel.src = randomSymbol;
   }
 
   console.log("initializeReels complete");
@@ -85,7 +85,7 @@ function spin() {
       active = true;
 
       var img = symbols[Math.floor(Math.random() * symbols.length)];
-      reel.src = getCacheBustedUrl(img);
+      reel.src = img;
 
 }     else {
       var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
