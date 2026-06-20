@@ -1,6 +1,6 @@
 
-
 var spinning = false;
+var animationId = null;
 
 // Symbol list
 var symbols = [
@@ -54,7 +54,12 @@ function initializeReels() {
 
 // Spin function
 
+
 function spin() {
+if (animationId) {
+  cancelAnimationFrame(animationId);
+  animationId = null;
+}
 
   var result = document.getElementById("result");
   var spinBtn = document.getElementById("spinBtn");
@@ -72,47 +77,41 @@ function spin() {
   var durations = [2000, 2500, 3000, 3500, 4000];
   var frameCounter = 0;
 
-  function animate() {
-    var now = performance.now();
-    var active = false;
+function animate() {
+  var now = performance.now();
+  var active = false;
 
-    for (var n = 1; n <= 5; n++) {
+  for (var n = 1; n <= 5; n++) {
     var reel = document.getElementById("reel" + n);
     if (!reel) continue;
-      
-    frameCounter++;
 
     if (now - startTime < durations[n - 1]) {
-    active = true;
+      active = true;
 
-    if (frameCounter % 3 === 0) {
-    var img = symbols[Math.floor(Math.random() * symbols.length)];
-    reel.src = img;
-  }
-}
-   
-      else {
+      // update occasionally to reduce load
+      if (Math.random() < 0.2) {
+        var img = symbols[Math.floor(Math.random() * symbols.length)];
+        reel.src = img;
+      }
+
+    } else {
       var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
       reels[n - 1] = finalImg;
       reel.src = finalImg;
-}
-    }
-
-    if (active) {
-      requestAnimationFrame(animate);
-    } else {
-      if (reels.every(r => r && r === reels[0])) {
-        result.textContent = "🎉 Jackpot! You got 5 in a row!";
-      } else {
-        result.textContent = "Voici tes images!";
-        spinBtn.disabled = false;
-        spinning = false;
-      }
-      spinBtn.disabled = false;
-      spinning = false;
     }
   }
 
-  requestAnimationFrame(animate);
+  if (active) {
+    animationId = requestAnimationFrame(animate);
+  } else {
+    result.textContent = reels.every(r => r && r === reels[0])
+      ? "🎉 Jackpot! You got 5 in a row!"
+      : "Voici tes images!";
+
+    spinBtn.disabled = false;
+    spinning = false;
+  }
 }
-window.addEventListener("DOMContentLoaded", initializeReels);
+
+requestAnimationFrame(animate);
+}
