@@ -115,3 +115,4 @@ function animate() {
 
 requestAnimationFrame(animate);
 }
+window.addEventListener("DOMContentLoaded", initializeReels);
