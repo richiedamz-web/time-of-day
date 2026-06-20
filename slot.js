@@ -115,3 +115,4 @@ function spin() {
 
   requestAnimationFrame(animate);
 }
+window.addEventListener("DOMContentLoaded", initializeReels);
