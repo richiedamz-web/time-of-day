@@ -23,7 +23,18 @@ var symbols = [
   "images/quatreheuresmoinslequart.jpg",
   "images/quatreheuresmoinsdix.jpg"
 ];
+function getUniqueSymbols(count) {
+  var shuffled = symbols.slice(); // make a copy
 
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = shuffled[i];
+    shuffled[i] = shuffled[j];
+    shuffled[j] = temp;
+  }
+
+  return shuffled.slice(0, count);
+}
 // Initialize reels
 function initializeReels() {
 
@@ -69,8 +80,9 @@ if (animationId) {
   spinning = true;
 
   var reels = [];
+  var finalSymbols = getUniqueSymbols(5);
 
-  spinBtn.disabled = true;
+spinBtn.disabled = true;
   result.textContent = "Ça tourne!... 🎰";
 
   var startTime = performance.now();
@@ -94,11 +106,11 @@ function animate() {
         reel.src = img;
       }
 
-    } else {
-      var finalImg = symbols[Math.floor(Math.random() * symbols.length)];
-      reels[n - 1] = finalImg;
-      reel.src = finalImg;
-    }
+     } else {
+     var finalImg = finalSymbols[n - 1];
+     reels[n - 1] = finalImg;
+     reel.src = finalImg;
+}
   }
 
   if (active) {
