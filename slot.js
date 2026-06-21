@@ -86,7 +86,7 @@ spinBtn.disabled = true;
   result.textContent = "Ça tourne!... 🎰";
 
   var startTime = performance.now();
-  var durations = [2000, 2500, 3000, 3500, 4000];
+  var durations = [1000, 1400, 1800, 2200, 2500];
   var frameCounter = 0;
 
 function animate() {
